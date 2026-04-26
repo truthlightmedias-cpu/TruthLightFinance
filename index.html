@@ -3,212 +3,72 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
-<title>Phone Finance Tracker v5</title>
-<meta name="theme-color" content="#111827">
+<title>Phone Finance Tracker v7</title>
 <style>
-:root{
-  --bg1:#050816;
-  --bg2:#111827;
-  --bg3:#1e1b4b;
-  --card:rgba(17,24,39,.78);
-  --card2:rgba(15,23,42,.84);
-  --text:#f8fafc;
-  --muted:#cbd5e1;
-  --border:rgba(148,163,184,.24);
-  --green:#4ade80;
-  --red:#fb7185;
-  --gold:#facc15;
-  --purple:#a78bfa;
-  --blue:#60a5fa;
-}
-*{box-sizing:border-box}
-html,body{margin:0;color:var(--text);font-family:"Aptos Display","Inter","Segoe UI",system-ui,-apple-system,sans-serif;background:#050816;background-image:radial-gradient(circle at top left,rgba(250,204,21,.18),transparent 34%),radial-gradient(circle at top right,rgba(167,139,250,.23),transparent 32%),linear-gradient(135deg,var(--bg1),var(--bg2),var(--bg3));background-attachment:fixed}
-body{padding-bottom:84px}.wrap{max-width:760px;margin:0 auto;padding:16px}
-h1,h2,h3,p{margin:0}.top{display:flex;justify-content:space-between;gap:12px;align-items:flex-start;margin-bottom:14px}
-h1{font-family:Georgia,"Times New Roman",serif;font-size:34px;line-height:1.03;letter-spacing:.25px;background:linear-gradient(90deg,#facc15,#f8fafc,#a78bfa);-webkit-background-clip:text;background-clip:text;color:transparent}
-h3{font-family:Georgia,"Times New Roman",serif;letter-spacing:.2px}.muted{color:var(--muted)}.small{font-size:13px}.grid{display:grid;gap:12px}.cards{grid-template-columns:repeat(2,minmax(0,1fr))}
-.card{background:linear-gradient(145deg,rgba(30,41,59,.92),rgba(15,23,42,.88));border:1px solid var(--border);border-radius:20px;padding:14px;box-shadow:0 18px 45px rgba(0,0,0,.24);backdrop-filter:blur(12px)}
-.num{font-weight:850;font-size:28px;line-height:1.05;margin-top:6px;letter-spacing:-.6px}.green{color:var(--green)}.red{color:var(--red)}.section{display:none}.section.active{display:block}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
-label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.7px} input,select,textarea,button{font:inherit}
-input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:rgba(15,23,42,.82);color:var(--text);outline:none}
-input:focus,select:focus,textarea:focus{border-color:rgba(250,204,21,.58);box-shadow:0 0 0 3px rgba(250,204,21,.10)}
-textarea{min-height:88px;resize:vertical}
-button{border:1px solid var(--border);background:linear-gradient(135deg,#1e293b,#111827);color:var(--text);padding:12px 14px;border-radius:14px;cursor:pointer;box-shadow:0 8px 22px rgba(0,0,0,.16)}
-button.primary{background:linear-gradient(135deg,#14532d,#16a34a);border-color:rgba(74,222,128,.45)}button.secondary{background:linear-gradient(135deg,#172554,#4338ca);border-color:rgba(96,165,250,.42)}button.danger{background:linear-gradient(135deg,#450a0a,#991b1b);border-color:rgba(248,113,113,.45)}
-.btns{display:flex;gap:10px;flex-wrap:wrap}.btns>*{flex:1}.list{display:grid;gap:10px}.tx{display:flex;justify-content:space-between;gap:10px}.tx .left{display:grid;gap:4px}
-.pill{display:inline-block;padding:2px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px;color:var(--muted);background:rgba(15,23,42,.72)}
-.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 12px;background:rgba(5,8,22,.93);backdrop-filter:blur(14px);border-top:1px solid var(--border)}
-.tabs button{padding:10px 8px;border-radius:999px;background:rgba(17,24,39,.85);font-size:13px}.tabs button.active{background:linear-gradient(135deg,rgba(250,204,21,.22),rgba(167,139,250,.22));border-color:rgba(250,204,21,.35)}
-.account-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.account{background:rgba(15,23,42,.72);border:1px solid var(--border);padding:12px;border-radius:16px}.right{text-align:right}
-.notice{padding:10px 12px;border:1px solid rgba(250,204,21,.22);background:rgba(24,24,27,.58);border-radius:14px;color:#e5e7eb;font-size:13px}.stack{display:grid;gap:8px}.mini{display:grid;grid-template-columns:1fr auto;gap:8px;align-items:center}.chiprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.chip{padding:6px 10px;border:1px solid var(--border);border-radius:999px;background:rgba(15,23,42,.72);font-size:12px;color:var(--muted)}
-.collapse-head{display:flex;justify-content:space-between;align-items:center;gap:10px}.collapse-toggle{padding:8px 12px;border-radius:999px;background:rgba(15,23,42,.72);font-size:12px}.collapsible{overflow:hidden;transition:max-height .25s ease,opacity .2s ease,margin-top .2s ease;max-height:1200px;opacity:1}.collapsible.collapsed{max-height:0;opacity:0;margin-top:0!important;pointer-events:none}
-.verse-card{margin-bottom:14px;padding:14px;border-radius:20px;border:1px solid rgba(250,204,21,.28);background:linear-gradient(135deg,rgba(250,204,21,.16),rgba(167,139,250,.13),rgba(15,23,42,.84));box-shadow:0 14px 35px rgba(0,0,0,.25)}
-.verse-label{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;margin-bottom:4px;font-weight:800}#dailyVerse{font-family:Georgia,"Times New Roman",serif;font-size:16px;line-height:1.42;color:#fff7ed}
-@media (max-width:520px){.cards,.account-grid,.row{grid-template-columns:1fr}h1{font-size:30px}.top{align-items:flex-start}}
+:root{--bg:#07111f;--card:#111827dd;--card2:#0f172acc;--text:#f8fafc;--muted:#cbd5e1;--border:#33415599;--green:#4ade80;--red:#fb7185;--gold:#facc15;--purple:#a78bfa}
+*{box-sizing:border-box}body{margin:0;padding-bottom:82px;color:var(--text);font-family:Inter,Segoe UI,system-ui,sans-serif;background:radial-gradient(circle at top left,#facc1533,transparent 32%),radial-gradient(circle at top right,#a78bfa44,transparent 32%),linear-gradient(135deg,#050816,#111827,#1e1b4b);background-attachment:fixed}.wrap{max-width:780px;margin:0 auto;padding:16px}
+h1,h3,p{margin:0}h1{font-family:Georgia,serif;font-size:34px;background:linear-gradient(90deg,#facc15,#fff,#a78bfa);-webkit-background-clip:text;color:transparent}.top{display:flex;justify-content:space-between;gap:12px;margin-bottom:14px}.small{font-size:13px}.muted{color:var(--muted)}
+.card,.verse{background:linear-gradient(145deg,#1e293bee,#0f172add);border:1px solid var(--border);border-radius:20px;padding:14px;box-shadow:0 18px 45px #0005}.verse{margin-bottom:14px;border-color:#facc1544}.verse-label{color:var(--gold);font-size:12px;text-transform:uppercase;letter-spacing:1.4px;font-weight:800;margin-bottom:5px}#dailyVerse{font-family:Georgia,serif;line-height:1.4}
+.grid{display:grid;gap:12px}.cards{grid-template-columns:repeat(2,1fr)}.num{font-weight:850;font-size:28px;margin-top:6px}.green{color:var(--green)}.red{color:var(--red)}.section{display:none}.section.active{display:block}.row{display:grid;grid-template-columns:1fr 1fr;gap:10px}
+label{display:block;font-size:12px;color:var(--muted);margin-bottom:6px;text-transform:uppercase;letter-spacing:.7px}input,select,textarea,button{font:inherit}input,select,textarea{width:100%;padding:12px;border-radius:14px;border:1px solid var(--border);background:var(--card2);color:var(--text);outline:none}textarea{min-height:88px;resize:vertical}
+button{border:1px solid var(--border);background:linear-gradient(135deg,#1e293b,#111827);color:var(--text);padding:12px 14px;border-radius:14px;cursor:pointer}button.primary{background:linear-gradient(135deg,#14532d,#16a34a)}button.secondary{background:linear-gradient(135deg,#172554,#4338ca)}button.danger{background:linear-gradient(135deg,#450a0a,#991b1b)}.btns{display:flex;gap:10px;flex-wrap:wrap}.btns>*{flex:1}
+.list{display:grid;gap:10px}.tx{display:flex;justify-content:space-between;gap:10px}.left{display:grid;gap:4px}.right{text-align:right}.pill,.chip{display:inline-block;padding:3px 8px;border-radius:999px;border:1px solid var(--border);font-size:12px;color:var(--muted);background:#0f172aaa}.chiprow{display:flex;gap:8px;flex-wrap:wrap;margin-top:10px}.notice{padding:10px 12px;border:1px solid #facc1544;background:#18181b99;border-radius:14px;color:#e5e7eb;font-size:13px}.account-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:10px}.account{background:#0f172aaa;border:1px solid var(--border);border-radius:16px;padding:12px}.stack{display:grid;gap:8px}.mini{display:grid;grid-template-columns:1fr auto;gap:8px}
+.tabs{position:fixed;left:0;right:0;bottom:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;padding:10px 12px;background:#050816ee;backdrop-filter:blur(14px);border-top:1px solid var(--border)}.tabs button{border-radius:999px;font-size:13px}.tabs button.active{background:linear-gradient(135deg,#facc1533,#a78bfa33)}
+.collapsible.collapsed{display:none}@media(max-width:520px){.cards,.account-grid,.row{grid-template-columns:1fr}h1{font-size:30px}}
 </style>
 </head>
 <body>
 <div class="wrap">
-  <div class="top">
-    <div>
-      <h1>Phone Finance Tracker</h1>
-      <div class="muted small">Smart parsing • Speech • Google Sheets sync</div>
-    </div>
-    <div id="status" class="small muted">Ready</div>
-  </div>
-  <div class="verse-card">
-    <div class="verse-label">Daily Verse</div>
-    <div id="dailyVerse">Loading verse…</div>
-  </div>
+<div class="top"><div><h1>Phone Finance Tracker</h1><div class="muted small">Smart fallback parsing · comma lock · API-ready · Sheets sync</div></div><div id="status" class="small muted">Ready</div></div>
+<div class="verse"><div class="verse-label">Daily Verse</div><div id="dailyVerse">Loading…</div></div>
 
-  <section id="home" class="section active grid">
-    <div class="grid cards">
-      <div class="card"><div class="small muted">Income · last 30 days</div><div id="income30" class="num green">$0.00</div></div>
-      <div class="card"><div class="small muted">Expenses · last 30 days</div><div id="expenses30" class="num red">$0.00</div></div>
-      <div class="card"><div class="small muted">Net · last 30 days</div><div id="net30" class="num">$0.00</div></div>
-      <div class="card"><div class="small muted">Overall cash on hand</div><div id="overallCash" class="num">$0.00</div></div>
-    </div>
-    <div class="card">
-      <div class="collapse-head"><h3>Accounts / method totals</h3><button id="toggleAccountsBtn" class="collapse-toggle" type="button" aria-expanded="true" aria-controls="accountTotalsWrap">Collapse</button></div>
-      <div id="accountTotalsWrap" class="collapsible" style="margin-top:10px"><div id="accountTotals" class="account-grid"></div></div>
-    </div>
-    <div class="card"><h3>Recent activity · 30 days</h3><div id="recentList" class="list" style="margin-top:10px"></div></div>
-  </section>
+<section id="home" class="section active grid">
+<div class="grid cards"><div class="card"><div class="small muted">Income · last 30 days</div><div id="income30" class="num green">$0.00</div></div><div class="card"><div class="small muted">Expenses · last 30 days</div><div id="expenses30" class="num red">$0.00</div></div><div class="card"><div class="small muted">Net · last 30 days</div><div id="net30" class="num">$0.00</div></div><div class="card"><div class="small muted">Overall cash on hand</div><div id="overallCash" class="num">$0.00</div></div></div>
+<div class="card"><div style="display:flex;justify-content:space-between;gap:10px"><h3>Accounts / method totals</h3><button id="toggleAccountsBtn" type="button">Collapse</button></div><div id="accountTotalsWrap" style="margin-top:10px"><div id="accountTotals" class="account-grid"></div></div></div>
+<div class="card"><h3>Recent activity · 30 days</h3><div id="recentList" class="list" style="margin-top:10px"></div></div>
+</section>
 
-  <section id="add" class="section grid">
-    <div class="card">
-      <h3>Speak or type</h3>
-      <div class="small muted" style="margin-top:6px">Examples: “Jewel bought Panda Express 25 cash” · “Mom rent payment 900 cashapp”</div>
-      <textarea id="rawInput" placeholder="Type a transaction..."></textarea>
-      <div class="btns" style="margin-top:10px"><button id="parseBtn" class="primary">Parse</button><button id="speakBtn" class="secondary">Speak</button></div>
-      <div class="notice" style="margin-top:10px">Flow: Name, Type, Category, Purchase, Purpose, Method, Amount</div>
-    </div>
-    <div class="card">
-      <h3>Transaction</h3>
-      <div style="margin-top:10px"><label>Name</label><select id="name"></select></div>
-      <div class="row" style="margin-top:10px"><div><label>Type</label><select id="type"></select></div><div><label>Category</label><select id="category"></select></div></div>
-      <div class="row"><div><label>What was purchased?</label><input id="purchase" placeholder="ex: Panda Express, gas, rent"></div><div><label>Account / method</label><select id="method"></select></div></div>
-      <div><label>Business purpose</label><input id="classification" placeholder="ex: meal during work trip"></div>
-      <div style="margin-top:10px"><label>Amount</label><input id="amount" type="number" step="0.01" placeholder="25"></div>
-      <div class="btns" style="margin-top:12px"><button id="saveBtn" class="primary">Save</button><button id="clearBtn">Clear</button></div>
-    </div>
-  </section>
+<section id="add" class="section grid">
+<div class="card"><h3>Speak or type</h3><div class="small muted" style="margin-top:6px">Free text: “Jewel bought Panda Express 25 cash”<br>Comma lock: “Jewel, expense, food, Panda Express, meal, cash, 25”</div><textarea id="rawInput" placeholder="Type a transaction..."></textarea><div class="btns" style="margin-top:10px"><button id="parseBtn" class="primary">Parse</button><button id="speakBtn" class="secondary">Speak</button></div><div class="notice" style="margin-top:10px">If commas are used, the app locks the order: name, type, category, purchase, business purpose, method, amount.</div></div>
+<div class="card"><h3>Transaction</h3><div style="margin-top:10px"><label>Name</label><select id="name"></select></div><div class="row" style="margin-top:10px"><div><label>Type</label><select id="type"></select></div><div><label>Category</label><select id="category"></select></div></div><div class="row"><div><label>What was purchased?</label><input id="purchase" placeholder="ex: lunch, gas, fabric"></div><div><label>Account / method</label><select id="method"></select></div></div><div><label>Business purpose</label><input id="classification" placeholder="ex: work meal, office supplies"></div><div style="margin-top:10px"><label>Amount</label><input id="amount" type="number" step="0.01" placeholder="25"></div><div class="btns" style="margin-top:12px"><button id="saveBtn" class="primary">Save</button><button id="clearBtn">Clear</button></div></div>
+</section>
 
-  <section id="transactions" class="section grid">
-    <div class="card">
-      <h3>Transactions</h3>
-      <div class="row"><div><label>Name</label><select id="filterName"><option value="">All</option></select></div><div><label>Type</label><select id="filterType"><option value="">All</option></select></div></div>
-      <div class="row"><div><label>Category</label><select id="filterCategory"><option value="">All</option></select></div><div><label>Account / method</label><select id="filterMethod"><option value="">All</option></select></div></div>
-      <div class="row"><div><label>Search purchase</label><input id="filterPurchase" placeholder="purchase"></div><div><label>Search purpose</label><input id="filterSearch" placeholder="business purpose"></div></div>
-      <div class="btns" style="margin-top:10px"><button id="applyFiltersBtn">Apply</button><button id="csvBtn">Export CSV</button><button id="backupBtn">Export Backup</button></div>
-      <div style="margin-top:10px"><label>Import Backup</label><input id="importFile" type="file" accept=".json,application/json"></div>
-      <div id="txList" class="list" style="margin-top:12px"></div>
-    </div>
-  </section>
+<section id="transactions" class="section grid"><div class="card"><h3>Transactions</h3><div class="row"><div><label>Name</label><select id="filterName"></select></div><div><label>Type</label><select id="filterType"></select></div></div><div class="row"><div><label>Category</label><select id="filterCategory"></select></div><div><label>Method</label><select id="filterMethod"></select></div></div><div class="row"><div><label>Search purchase</label><input id="filterPurchase"></div><div><label>Search purpose</label><input id="filterSearch"></div></div><div class="btns" style="margin-top:10px"><button id="applyFiltersBtn">Apply</button><button id="csvBtn">Export CSV</button><button id="backupBtn">Export Backup</button></div><div style="margin-top:10px"><label>Import Backup</label><input id="importFile" type="file" accept=".json"></div><div id="txList" class="list" style="margin-top:12px"></div></div></section>
 
-  <section id="settings" class="section grid">
-    <div class="card">
-      <h3>Manage dropdowns</h3>
-      <div class="small muted" style="margin-bottom:12px">Purchase and business purpose are open text.</div>
-      <div class="stack" style="margin-top:12px">
-        <div><label>Name</label><div class="mini"><input id="newName" placeholder="add name"><button data-add="names">Add</button></div><div id="namesEditor" class="stack" style="margin-top:8px"></div></div>
-        <div><label>Type</label><div class="mini"><input id="newType" placeholder="add type"><button data-add="types">Add</button></div><div id="typesEditor" class="stack" style="margin-top:8px"></div></div>
-        <div><label>Category</label><div class="mini"><input id="newCategory" placeholder="add category"><button data-add="categories">Add</button></div><div id="categoriesEditor" class="stack" style="margin-top:8px"></div></div>
-        <div><label>Account / method</label><div class="mini"><input id="newMethod" placeholder="add account or method"><button data-add="methods">Add</button></div><div id="methodsEditor" class="stack" style="margin-top:8px"></div></div>
-      </div>
-    </div>
-
-    <!-- OpenAI API Key -->
-    <div class="card">
-      <h3>AI Smart Parsing (OpenAI)</h3>
-      <div class="small muted" style="margin-bottom:8px">Enter your OpenAI key for smarter voice & text parsing.</div>
-      <div class="mini">
-        <input id="openaiKeyInput" type="password" placeholder="sk-...">
-        <button id="saveApiKeyBtn" class="primary">Save Key</button>
-      </div>
-      <div id="apiKeyStatus" class="small muted" style="margin-top:10px"></div>
-      <p class="small muted" style="margin-top:12px">Key is saved only in your browser.</p>
-    </div>
-
-    <div class="card">
-      <h3>Account balances</h3>
-      <div class="small muted" style="margin-top:6px">Enter the current balance for each account or method.</div>
-      <div id="balancesList" class="list" style="margin-top:10px"></div>
-      <div class="btns" style="margin-top:12px"><button id="saveBalancesBtn" class="primary">Save balances</button></div>
-    </div>
-    <div class="card"><h3>Recent purchase / purpose examples</h3><div class="small muted" style="margin-top:6px">Open text fields from recent transactions.</div><div id="classificationExamples" class="chiprow"></div></div>
-  </section>
+<section id="settings" class="section grid"><div class="card"><h3>Manage dropdowns</h3><div class="stack" style="margin-top:12px"><div><label>Name</label><div class="mini"><input id="newName"><button data-add="names">Add</button></div><div id="namesEditor" class="stack" style="margin-top:8px"></div></div><div><label>Type</label><div class="mini"><input id="newType"><button data-add="types">Add</button></div><div id="typesEditor" class="stack" style="margin-top:8px"></div></div><div><label>Category</label><div class="mini"><input id="newCategory"><button data-add="categories">Add</button></div><div id="categoriesEditor" class="stack" style="margin-top:8px"></div></div><div><label>Method</label><div class="mini"><input id="newMethod"><button data-add="methods">Add</button></div><div id="methodsEditor" class="stack" style="margin-top:8px"></div></div></div></div><div class="card"><h3>Account balances</h3><div id="balancesList" class="list" style="margin-top:10px"></div><div class="btns" style="margin-top:12px"><button id="saveBalancesBtn" class="primary">Save balances</button></div></div><div class="card"><h3>Recent examples</h3><div id="classificationExamples" class="chiprow"></div></div></section>
 </div>
 
-<div class="tabs">
-  <button data-tab="home" class="active">Home</button>
-  <button data-tab="add">Add</button>
-  <button data-tab="transactions">Transactions</button>
-  <button data-tab="settings">Settings</button>
-</div>
+<div class="tabs"><button data-tab="home" class="active">Home</button><button data-tab="add">Add</button><button data-tab="transactions">Transactions</button><button data-tab="settings">Settings</button></div>
 
 <script>
-// ==================== FULL IMPROVED v5 ====================
-const DB_NAME='phone_finance_tracker_db_v5', STORE='appdata', KEY='main', LS='phone_finance_tracker_backup_v5';
+const DB_NAME='phone_finance_tracker_db_v7',STORE='appdata',KEY='main',LS='phone_finance_tracker_backup_v7';
 const defaults={names:['Dad','Mom','Tartyn','Tasia','Teara','Jewel','Jorne'],types:['income','expense'],categories:['rent','mortgage','house','donations','TPUSA','BA work','other','constituting america','food','recreation','car','bill'],methods:['cash','venmo','cashapp','paypal','check','embassy','amex','credit','debit','truist','other']};
-
-const SHEETS_WEBHOOK_URL = "https://script.google.com/macros/s/AKfycbwxCA0_w1DNV8HbF1spUsNKVQxWIWhNP1eosahychOp7_ZqLO3KF5yNTWDkEwLSuO_1rg/exec";
-const SHEETS_APP_TOKEN = "finance-2026-lock-xyz";
-
-const verses=["Philippians 4:13 — I can do all things through Christ who strengthens me.","Proverbs 3:5 — Trust in the Lord with all your heart.","Psalm 46:10 — Be still, and know that I am God.","Matthew 6:21 — For where your treasure is, there your heart will be also.","Colossians 3:23 — Whatever you do, work at it with all your heart, as working for the Lord.","Romans 8:28 — All things work together for good to those who love God.","2 Corinthians 9:7 — God loves a cheerful giver.","Psalm 23:1 — The Lord is my shepherd; I shall not want.","Isaiah 41:10 — Fear not, for I am with you.","Matthew 6:33 — Seek first the kingdom of God and His righteousness.","Proverbs 16:3 — Commit your work to the Lord, and your plans will be established.","Luke 12:34 — For where your treasure is, there your heart will be also."];
-
-const $=id=>document.getElementById(id), fmt=n=>`$${Number(n||0).toFixed(2)}`;
-let state={transactions:[],balances:{},options:structuredClone(defaults),ui:{accountsCollapsed:false},openaiKey:""};
-
-// Load / Save API Key
-function loadApiKey(){ const saved = localStorage.getItem('openai_api_key_v5'); if(saved) state.openaiKey = saved; }
-function saveApiKey(key){ state.openaiKey = key.trim(); localStorage.setItem('openai_api_key_v5', state.openaiKey); updateApiKeyStatus(); }
-function updateApiKeyStatus(){ const el=$('apiKeyStatus'); if(state.openaiKey) el.innerHTML=`✅ Key saved • <span style="font-family:monospace">${state.openaiKey.substring(0,8)}...</span>`; else el.textContent="No key • Using smart fallback only"; }
-
-// ==================== GREATLY IMPROVED FALLBACK PARSING ====================
-function parseText(text){
-  const lower = text.toLowerCase().trim();
-  let amount = parseFloat((lower.match(/\$?\s*([0-9]+(?:\.[0-9]{1,2})?)/)||[])[1]||0);
-  let name = detectName(text);
-  let type = /paid me|received|earned|got paid|income/.test(lower) ? 'income' : 'expense';
-  let category = 'other';
-  let purchase = '';
-  let classification = text.replace(/\$?\s*[0-9]+(?:\.[0-9]{1,2})?/g,'').trim() || 'transaction';
-  let method = 'other';
-
-  if(/rent/.test(lower)){ category='rent'; purchase='rent'; classification='rent payment'; }
-  else if(/mortgage/.test(lower)){ category='mortgage'; purchase='mortgage'; }
-  else if(/electric|power|utility/.test(lower)){ category='bill'; purchase='electric'; classification='electric bill'; }
-  else if(/water/.test(lower)){ category='bill'; purchase='water'; classification='water bill'; }
-  else if(/gas|fuel/.test(lower)){ category='car'; purchase='gas'; classification='gas'; }
-  else if(/panda|express|mcdonald|burger|food|lunch|dinner|meal/.test(lower)){ category='food'; purchase='food'; classification='meal'; }
-
-  if(/cashapp|cash app/.test(lower)) method='cashapp';
-  else if(/venmo/.test(lower)) method='venmo';
-  else if(/paypal/.test(lower)) method='paypal';
-  else if(/cash/.test(lower)) method='cash';
-
-  return {name, type, category, purchase, classification, method, amount};
-}
-
-function detectName(text){ /* same as before */ const lower=String(text||'').toLowerCase(); for(const n of state.options?.names||defaults.names){if(lower.includes(n.toLowerCase()))return n} return 'Jewel'; }
-
-// ... (all other functions - loadState, saveState, render, txHtml, etc. are exactly the same as your previous version) ...
-
-// For space, the rest of the code (tabs, speech, save, etc.) is unchanged except for the speech auto-parse and API key integration.
-
-(async function init(){
-  loadApiKey();
-  updateApiKeyStatus();
-  setDailyVerse();
-  setupTabs();
-  setupSpeech();
-  setupAccountsCollapse();
-  await loadState();
-  render();
-  clearForm();
-  setStatus('Ready');
-})();
+const SHEETS_WEBHOOK_URL='https://script.google.com/macros/s/AKfycbwxCA0_w1DNV8HbF1spUsNKVQxWIWhNP1eosahychOp7_ZqLO3KF5yNTWDkEwLSuO_1rg/exec',SHEETS_APP_TOKEN='finance-2026-lock-xyz';
+const API_PARSE_ENDPOINT='',API_PARSE_TOKEN='';
+const verses=['Philippians 4:13 — I can do all things through Christ who strengthens me.','Proverbs 3:5 — Trust in the Lord with all your heart.','Psalm 46:10 — Be still, and know that I am God.','Matthew 6:21 — For where your treasure is, there your heart will be also.','Colossians 3:23 — Whatever you do, work at it with all your heart, as working for the Lord.','Romans 8:28 — All things work together for good to those who love God.','2 Corinthians 9:7 — God loves a cheerful giver.','Psalm 23:1 — The Lord is my shepherd; I shall not want.','Isaiah 41:10 — Fear not, for I am with you.','Matthew 6:33 — Seek first the kingdom of God and His righteousness.','Proverbs 16:3 — Commit your work to the Lord, and your plans will be established.','Luke 12:34 — For where your treasure is, there your heart will be also.'];
+const methodWords={cash:['cash'],venmo:['venmo'],cashapp:['cashapp','cash app'],paypal:['paypal'],check:['check'],embassy:['embassy'],amex:['amex','american express'],credit:['credit','credit card'],debit:['debit','debit card'],truist:['truist','bank'],other:['other']};
+const purchaseRules=[{keys:['panda express'],cat:'recreation',buy:'Panda Express',purpose:'meal'},{keys:['mcdonald','mcdonalds'],cat:'recreation',buy:'McDonalds',purpose:'meal'},{keys:['restaurant','dinner','lunch','breakfast','coffee','meal','food','pizza','chick fil a','chick-fil-a'],cat:'food',buy:'food',purpose:'meal'},{keys:['gas','fuel'],cat:'car',buy:'gas',purpose:'gas'},{keys:['oil change'],cat:'car',buy:'oil change',purpose:'car maintenance'},{keys:['car repair','mechanic','tires','tire'],cat:'car',buy:'car repair',purpose:'car maintenance'},{keys:['electric'],cat:'bill',buy:'electric',purpose:'electric bill'},{keys:['water'],cat:'bill',buy:'water',purpose:'water bill'},{keys:['sewer'],cat:'bill',buy:'sewer',purpose:'sewer bill'},{keys:['garbage','trash'],cat:'bill',buy:'garbage',purpose:'garbage bill'},{keys:['internet','wifi'],cat:'bill',buy:'internet',purpose:'internet bill'},{keys:['hostinger','domain','website','netlify','github'],cat:'bill',buy:'website hosting',purpose:'website hosting'},{keys:['mortgage'],cat:'mortgage',buy:'mortgage',purpose:'mortgage'},{keys:['rent'],cat:'rent',buy:'rent',purpose:'rent payment'},{keys:['donation','donations','donated'],cat:'donations',buy:'donation',purpose:'donation'},{keys:['constitution','constituting america'],cat:'constituting america',buy:'Constituting America',purpose:'work expense'},{keys:['tpusa'],cat:'TPUSA',buy:'TPUSA',purpose:'work expense'},{keys:['fabric','costume','props','prop','paint','printer ink','paper','office supplies','supplies'],cat:'BA work',buy:'supplies',purpose:'business supplies'}];
+const $=id=>document.getElementById(id),fmt=n=>`$${Number(n||0).toFixed(2)}`;let state={transactions:[],balances:{},options:structuredClone(defaults),ui:{accountsCollapsed:false}};
+function setStatus(s){$('status').textContent=s}function safeClone(v){return JSON.parse(JSON.stringify(v))}function uniqueClean(a){return[...new Set((a||[]).map(v=>String(v||'').trim()).filter(Boolean))]}function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]))}function setDailyVerse(){const start=new Date(new Date().getFullYear(),0,0),day=Math.floor((new Date()-start)/86400000);$('dailyVerse').textContent=verses[day%verses.length]}
+function ensureOptions(){if(!state.ui)state.ui={accountsCollapsed:false};const o=state.options||{};state.options={names:uniqueClean(o.names?.length?o.names:defaults.names),types:uniqueClean(o.types?.length?o.types:defaults.types),categories:uniqueClean(o.categories?.length?o.categories:defaults.categories),methods:uniqueClean(o.methods?.length?o.methods:defaults.methods)};if(!state.options.names.length)state.options.names=['Jewel'];if(!state.options.types.length)state.options.types=['expense'];if(!state.options.categories.length)state.options.categories=['other'];if(!state.options.methods.length)state.options.methods=['other'];const keep={};for(const m of state.options.methods)keep[m]=Number(state.balances?.[m]||0);state.balances=keep;for(const t of state.transactions){if(!t.name)t.name='Jewel';if(!t.purchase&&t.subcategory)t.purchase=t.subcategory;if(!t.purchase)t.purchase=t.classification||'transaction'}}
+function valid(v,list,fallback){return list.includes(v)?v:fallback}function norm(s){return String(s||'').trim().toLowerCase()}function detectName(text){const words=String(text||'').toLowerCase().split(/\W+/).filter(Boolean);for(const n of state.options.names){if(words.includes(n.toLowerCase()))return n}return state.options.names.includes('Jewel')?'Jewel':state.options.names[0]}function detectMethod(lower){for(const [m,words] of Object.entries(methodWords)){if(state.options.methods.includes(m)&&words.some(w=>lower.includes(w)))return m}for(const m of state.options.methods){if(lower.includes(m.toLowerCase()))return m}return state.options.methods.includes('other')?'other':state.options.methods[0]}
+function cleanWords(text){let c=String(text||'');c=c.replace(/\$?\s*\d+(?:\.\d{1,2})?/g,' ');for(const n of state.options.names)c=c.replace(new RegExp('\\b'+n.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','ig'),' ');for(const m of state.options.methods)c=c.replace(new RegExp('\\b'+m.replace(/[.*+?^${}()|[\]\\]/g,'\\$&')+'\\b','ig'),' ');['bought','buy','spent','paid','pay','got','received','earned','made','for','on','with','using','from','me','a','an','the','expense','income'].forEach(w=>c=c.replace(new RegExp('\\b'+w+'\\b','ig'),' '));return c.replace(/\s+/g,' ').trim()}
+function parseCommaLocked(raw){if(!raw.includes(','))return null;const p=raw.split(',').map(x=>x.trim());if(p.length<7)return null;return{name:valid(p[0],state.options.names,state.options.names.includes('Jewel')?'Jewel':state.options.names[0]),type:valid(norm(p[1]),state.options.types,'expense'),category:valid(p[2],state.options.categories,'other'),purchase:p[3]||'transaction',classification:p[4]||p[3]||'transaction',method:valid(norm(p[5]).replace(/\s+/g,''),state.options.methods,'other'),amount:Number(String(p[6]||'0').replace(/[^0-9.]/g,''))}}
+async function parseWithAPI(raw){if(!API_PARSE_ENDPOINT)return null;try{const res=await fetch(API_PARSE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({token:API_PARSE_TOKEN,text:raw})});const data=await res.json();if(!data||!data.ok||!data.parsed)return null;return normalizeParsed(data.parsed)}catch(e){return null}}
+function normalizeParsed(p){return{name:valid(String(p.name||'').trim(),state.options.names,state.options.names[0]),type:valid(norm(p.type),state.options.types,'expense'),category:valid(String(p.category||'').trim(),state.options.categories,'other'),purchase:String(p.purchase||p.item||p.classification||'transaction').trim(),classification:String(p.businessPurpose||p.purpose||p.classification||p.purchase||'transaction').trim(),method:valid(norm(p.method).replace(/\s+/g,''),state.options.methods,'other'),amount:Number(p.amount||0)}}
+function parseFallback(raw){const lower=raw.toLowerCase(),amount=Number((lower.match(/(?:\$\s*)?(\d+(?:\.\d{1,2})?)/)||[])[1]||0);let name=detectName(raw),method=detectMethod(lower),type=state.options.types.includes('expense')?'expense':state.options.types[0],category=state.options.categories.includes('other')?'other':state.options.categories[0],purchase='',classification='';if(['paid me','received','earned','income','deposit','made'].some(w=>lower.includes(w))||(/\brent\b/.test(lower)&&(/\bfrom\b|paid me|received/.test(lower))))type='income';if(['bought','spent','paid','bill','gas','food','restaurant','mortgage'].some(w=>lower.includes(w))&&!['paid me','received','earned','income','deposit'].some(w=>lower.includes(w)))type='expense';const rule=purchaseRules.find(r=>r.keys.some(k=>lower.includes(k)));if(rule){category=state.options.categories.includes(rule.cat)?rule.cat:category;purchase=rule.buy;classification=rule.purpose}if(!purchase)purchase=cleanWords(raw)||'transaction';if(!classification)classification=purchase;if(lower.includes('business')||lower.includes('work')||lower.includes('show')||lower.includes('client')||lower.includes('office'))classification=classification==='transaction'?purchase:`${classification} / business`;purchase=purchase.replace(/\b(cash|venmo|cashapp|paypal|check|card|payment)\b/gi,'').trim()||'transaction';return{name,type,category,purchase,classification,method,amount}}
+async function smartParse(raw){const comma=parseCommaLocked(raw);if(comma)return comma;const api=await parseWithAPI(raw);if(api&&api.amount)return api;return parseFallback(raw)}
+async function sendToGoogleSheets(tx){try{if(!SHEETS_WEBHOOK_URL)return false;const res=await fetch(SHEETS_WEBHOOK_URL,{method:'POST',headers:{'Content-Type':'text/plain;charset=utf-8'},body:JSON.stringify({token:SHEETS_APP_TOKEN,date:tx.date||new Date().toISOString(),name:tx.name||'',type:tx.type,category:tx.category,purchase:tx.purchase,businessPurpose:tx.classification,classification:tx.classification,method:tx.method,amount:Number(tx.amount||0)})});const data=JSON.parse(await res.text());return !!data.ok}catch(e){return false}}
+function fillSelect(id,items,all=false){$(id).innerHTML=(all?['']:[]).concat(items).map(v=>`<option value="${esc(v)}">${v||'All'}</option>`).join('')}function nowIso(){return new Date().toISOString()}function openDb(){return new Promise((res,rej)=>{const req=indexedDB.open(DB_NAME,1);req.onupgradeneeded=()=>{const db=req.result;if(!db.objectStoreNames.contains(STORE))db.createObjectStore(STORE)};req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error)})}async function saveState(){localStorage.setItem(LS,JSON.stringify(state));try{const db=await openDb();await new Promise((res,rej)=>{const tx=db.transaction(STORE,'readwrite');tx.objectStore(STORE).put(state,KEY);tx.oncomplete=()=>res();tx.onerror=()=>rej(tx.error)});db.close()}catch(e){}}async function loadState(){try{const db=await openDb();const data=await new Promise((res,rej)=>{const tx=db.transaction(STORE,'readonly'),req=tx.objectStore(STORE).get(KEY);req.onsuccess=()=>res(req.result);req.onerror=()=>rej(req.error)});db.close();if(data){state={transactions:data.transactions||[],balances:data.balances||{},options:data.options||safeClone(defaults),ui:data.ui||{accountsCollapsed:false}};ensureOptions();return}}catch(e){}try{const b=JSON.parse(localStorage.getItem(LS)||'{}');state={transactions:b.transactions||[],balances:b.balances||{},options:b.options||safeClone(defaults),ui:b.ui||{accountsCollapsed:false}}}catch(e){}ensureOptions()}
+function recent30(){const cutoff=Date.now()-30*86400000;return state.transactions.filter(t=>new Date(t.date).getTime()>=cutoff)}function compute(){let income30=0,expenses30=0,totalIncome=0,totalExpenses=0;const methodTotals={};for(const m of state.options.methods)methodTotals[m]={income:0,expenses:0,net:Number(state.balances[m]||0),initial:Number(state.balances[m]||0)};for(const t of state.transactions){const amt=Number(t.amount||0),m=state.options.methods.includes(t.method)?t.method:state.options.methods[0];if(!methodTotals[m])methodTotals[m]={income:0,expenses:0,net:0,initial:0};if(t.type==='income'){totalIncome+=amt;methodTotals[m].income+=amt;methodTotals[m].net+=amt;if(new Date(t.date).getTime()>=Date.now()-30*86400000)income30+=amt}else{totalExpenses+=amt;methodTotals[m].expenses+=amt;methodTotals[m].net-=amt;if(new Date(t.date).getTime()>=Date.now()-30*86400000)expenses30+=amt}}return{income30,expenses30,net30:income30-expenses30,overall:Object.values(state.balances).reduce((a,b)=>a+Number(b||0),0)+totalIncome-totalExpenses,methodTotals,recent:recent30()}}
+function txHtml(t,del=false){const cls=t.type==='income'?'green':'red',sign=t.type==='income'?'+':'-';return `<div class="card tx"><div class="left"><strong>${esc(t.purchase||t.classification)}</strong><div><span class="pill">${esc(t.name||'Jewel')}</span> <span class="pill">${esc(t.type)}</span> <span class="pill">${esc(t.category)}</span> <span class="pill">${esc(t.method)}</span></div><div class="small muted">Purpose: ${esc(t.classification||'')}</div><div class="small muted">${new Date(t.date).toLocaleString()}</div></div><div class="right"><div class="num ${cls}" style="font-size:22px">${sign}${fmt(t.amount)}</div>${del?`<button class="danger" onclick="deleteTx('${t.id}')">Delete</button>`:''}</div></div>`}function editorHtml(key,list){return list.map((v,i)=>`<div class="mini"><input data-edit-list="${key}" data-index="${i}" value="${esc(v)}"><button class="danger" data-remove-list="${key}" data-index="${i}">Delete</button></div>`).join('')}function refreshSelects(){ensureOptions();fillSelect('name',state.options.names);fillSelect('type',state.options.types);fillSelect('category',state.options.categories);fillSelect('method',state.options.methods);fillSelect('filterName',state.options.names,true);fillSelect('filterType',state.options.types,true);fillSelect('filterCategory',state.options.categories,true);fillSelect('filterMethod',state.options.methods,true)}function captureBalanceInputs(){document.querySelectorAll('[data-balance]').forEach(el=>{state.balances[el.dataset.balance]=Number(el.value||0)})}
+function render(){refreshSelects();const d=compute();$('income30').textContent=fmt(d.income30);$('expenses30').textContent=fmt(d.expenses30);$('net30').textContent=fmt(d.net30);$('overallCash').textContent=fmt(d.overall);$('accountTotals').innerHTML=Object.entries(d.methodTotals).map(([m,v])=>`<div class="account"><strong>${esc(m)}</strong><div class="small muted">Income ${fmt(v.income)}</div><div class="small muted">Expenses ${fmt(v.expenses)}</div><div class="num ${v.net>=0?'green':'red'}" style="font-size:22px">${fmt(v.net)}</div></div>`).join('');$('accountTotalsWrap').classList.toggle('collapsed',!!state.ui.accountsCollapsed);$('toggleAccountsBtn').textContent=state.ui.accountsCollapsed?'Expand':'Collapse';$('recentList').innerHTML=d.recent.length?d.recent.map(t=>txHtml(t)).join(''):'<div class="small muted">No transactions in the last 30 days.</div>';const fn=$('filterName').value,ft=$('filterType').value,fc=$('filterCategory').value,fm=$('filterMethod').value,fp=$('filterPurchase').value.trim().toLowerCase(),fs=$('filterSearch').value.trim().toLowerCase();const filtered=state.transactions.filter(t=>(!fn||(t.name||'Jewel')===fn)&&(!ft||t.type===ft)&&(!fc||t.category===fc)&&(!fm||t.method===fm)&&(!fp||String(t.purchase||'').toLowerCase().includes(fp))&&(!fs||String(t.classification||'').toLowerCase().includes(fs)));$('txList').innerHTML=filtered.length?filtered.map(t=>txHtml(t,true)).join(''):'<div class="small muted">No transactions found.</div>';$('balancesList').innerHTML=state.options.methods.map(m=>`<div class="tx card"><div class="left"><strong>${esc(m)}</strong><div class="small muted">Account balance</div></div><div style="min-width:140px"><input data-balance="${esc(m)}" type="number" step="0.01" value="${Number(state.balances[m]||0)}"></div></div>`).join('');$('namesEditor').innerHTML=editorHtml('names',state.options.names);$('typesEditor').innerHTML=editorHtml('types',state.options.types);$('categoriesEditor').innerHTML=editorHtml('categories',state.options.categories);$('methodsEditor').innerHTML=editorHtml('methods',state.options.methods);const examples=[...new Set(state.transactions.flatMap(t=>[String(t.purchase||'').trim(),String(t.classification||'').trim()]).filter(Boolean))].slice(0,22);$('classificationExamples').innerHTML=examples.length?examples.map(v=>`<span class="chip">${esc(v)}</span>`).join(''):'<span class="chip">purchase and purpose are open text</span>'}
+function download(name,content,type){const blob=new Blob([content],{type}),a=document.createElement('a');a.href=URL.createObjectURL(blob);a.download=name;a.click();setTimeout(()=>URL.revokeObjectURL(a.href),1000)}function exportCsv(){const rows=[['date','name','type','category','purchase','businessPurpose','method','amount'],...state.transactions.map(t=>[t.date,t.name||'Jewel',t.type,t.category,t.purchase||'',t.classification,t.method,t.amount])];download('finance-tracker-export.csv',rows.map(r=>r.map(v=>`"${String(v??'').replace(/"/g,'""')}"`).join(',')).join('\n'),'text/csv;charset=utf-8')}function exportBackup(){download('finance-tracker-backup.json',JSON.stringify(state,null,2),'application/json')}async function importBackup(file){const data=JSON.parse(await file.text());state={transactions:Array.isArray(data.transactions)?data.transactions:[],balances:data.balances&&typeof data.balances==='object'?data.balances:{},options:data.options&&typeof data.options==='object'?data.options:safeClone(defaults),ui:data.ui&&typeof data.ui==='object'?data.ui:{accountsCollapsed:false}};ensureOptions();await saveState();render();setStatus('Backup imported')}async function addTx(tx){state.transactions.unshift({...tx,id:crypto.randomUUID?crypto.randomUUID():String(Date.now()+Math.random()),date:nowIso()});await saveState()}async function deleteTx(id){state.transactions=state.transactions.filter(t=>t.id!==id);await saveState();render()}window.deleteTx=deleteTx;function clearForm(){$('rawInput').value='';$('name').value=state.options.names.includes('Jewel')?'Jewel':state.options.names[0];$('type').value=state.options.types.includes('expense')?'expense':state.options.types[0];$('category').value=state.options.categories.includes('other')?'other':state.options.categories[0];$('purchase').value='';$('classification').value='';$('method').value=state.options.methods.includes('other')?'other':state.options.methods[0];$('amount').value=''}function setupTabs(){document.querySelectorAll('.tabs button').forEach(btn=>btn.addEventListener('click',async()=>{captureBalanceInputs();document.querySelectorAll('.tabs button').forEach(b=>b.classList.remove('active'));btn.classList.add('active');document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));$(btn.dataset.tab).classList.add('active');if(btn.dataset.tab!=='settings')await saveState();render()}))}function setupSpeech(){const SR=window.SpeechRecognition||window.webkitSpeechRecognition;if(!SR){$('speakBtn').disabled=true;$('speakBtn').textContent='Speech unavailable';return}const rec=new SR();rec.lang='en-US';rec.interimResults=false;rec.maxAlternatives=1;$('speakBtn').addEventListener('click',()=>{setStatus('Listening…');rec.start()});rec.onresult=e=>{$('rawInput').value=e.results[0][0].transcript;setStatus('Heard text')};rec.onerror=()=>setStatus('Speech failed')}
+async function addOption(key,inputId){const v=$(inputId).value.trim();if(!v)return;captureBalanceInputs();state.options[key]=uniqueClean([...(state.options[key]||[]),v]);if(key==='methods'&&!(v in state.balances))state.balances[v]=0;$(inputId).value='';ensureOptions();await saveState();render();setStatus('Added')}async function removeOption(key,index){const arr=[...(state.options[key]||[])];if(arr.length<=1){alert('You need at least one value here.');return}const removed=arr[index];state.options[key]=arr.filter((_,i)=>i!==index);if(key==='methods')delete state.balances[removed];for(const t of state.transactions){if(key==='names'&&t.name===removed)t.name=state.options.names[0];if(key==='types'&&t.type===removed)t.type=state.options.types[0];if(key==='categories'&&t.category===removed)t.category=state.options.categories[0];if(key==='methods'&&t.method===removed)t.method=state.options.methods[0]}ensureOptions();await saveState();render();setStatus('Deleted')}async function updateOptionName(key,index,value){const arr=[...(state.options[key]||[])],old=arr[index],clean=value.trim();if(!clean)return;arr[index]=clean;state.options[key]=uniqueClean(arr);if(key==='methods'&&old!==clean){state.balances[clean]=Number(state.balances[old]||0);delete state.balances[old]}for(const t of state.transactions){if(key==='names'&&t.name===old)t.name=clean;if(key==='types'&&t.type===old)t.type=clean;if(key==='categories'&&t.category===old)t.category=clean;if(key==='methods'&&t.method===old)t.method=clean}ensureOptions();await saveState();render();setStatus('Updated')}
+document.addEventListener('click',async e=>{const addKey=e.target.getAttribute('data-add');if(addKey){if(addKey==='names')await addOption('names','newName');if(addKey==='types')await addOption('types','newType');if(addKey==='categories')await addOption('categories','newCategory');if(addKey==='methods')await addOption('methods','newMethod')}const removeKey=e.target.getAttribute('data-remove-list');if(removeKey)await removeOption(removeKey,Number(e.target.getAttribute('data-index')))});document.addEventListener('change',async e=>{if(e.target.matches('[data-edit-list]'))await updateOptionName(e.target.getAttribute('data-edit-list'),Number(e.target.getAttribute('data-index')),e.target.value)});
+$('parseBtn').addEventListener('click',async()=>{const p=await smartParse($('rawInput').value);$('name').value=state.options.names.includes(p.name)?p.name:state.options.names[0];$('type').value=state.options.types.includes(p.type)?p.type:state.options.types[0];$('category').value=state.options.categories.includes(p.category)?p.category:state.options.categories[0];$('purchase').value=p.purchase||'';$('classification').value=p.classification||'';$('method').value=state.options.methods.includes(p.method)?p.method:state.options.methods[0];$('amount').value=p.amount||'';setStatus($('rawInput').value.includes(',')?'Parsed with comma lock':'Parsed with smart fallback')});
+$('saveBtn').addEventListener('click',async()=>{const tx={name:$('name').value,type:$('type').value,category:$('category').value,purchase:$('purchase').value.trim(),classification:$('classification').value.trim(),method:$('method').value,amount:Number($('amount').value||0),date:nowIso()};if(!tx.purchase||!tx.classification||!tx.amount){alert('Purchase, business purpose, and amount are required.');return}await addTx(tx);const synced=await sendToGoogleSheets(tx);clearForm();render();setStatus(synced?'Saved + synced to Sheets':'Saved locally');document.querySelector('[data-tab="home"]').click()});$('clearBtn').addEventListener('click',clearForm);$('applyFiltersBtn').addEventListener('click',render);$('csvBtn').addEventListener('click',exportCsv);$('backupBtn').addEventListener('click',exportBackup);$('saveBalancesBtn').addEventListener('click',async()=>{captureBalanceInputs();ensureOptions();await saveState();render();setStatus('Balances saved')});$('importFile').addEventListener('change',async e=>{const f=e.target.files&&e.target.files[0];if(f){try{await importBackup(f)}catch(err){alert('Import failed')}e.target.value=''}});$('toggleAccountsBtn').addEventListener('click',async()=>{state.ui.accountsCollapsed=!state.ui.accountsCollapsed;await saveState();render()});
+(async function init(){setDailyVerse();setupTabs();setupSpeech();await loadState();render();clearForm();setStatus('Ready')})();
 </script>
 </body>
 </html>
